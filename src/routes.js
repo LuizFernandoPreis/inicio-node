@@ -6,7 +6,7 @@ const userSchema = require("./schemas/create.user.schema.json");
 const AuthenticationMiddleware = require("./apps/middlewares/authentication");
 const routes = new Router();
 
-routes.post("/users", schemaValidator(userSchema), UserController.create);
+routes.post("/user", schemaValidator(userSchema), UserController.create);
 
 routes.post("/auth", AuthenticationController.authenticate, () => {
   console.log(1);
@@ -14,8 +14,14 @@ routes.post("/auth", AuthenticationController.authenticate, () => {
 
 routes.use(AuthenticationMiddleware);
 
+routes.put("/user", UserController.update);
+
+routes.delete("/user", UserController.delete);
+
 routes.get("/health", (req, res) => {
   return res.send({ message: "Connected with success!" });
 });
+
+routes.get("/user-profile", UserController.userProfile);
 
 module.exports = routes;
