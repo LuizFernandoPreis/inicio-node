@@ -17,19 +17,19 @@ routes.post("/auth", AuthenticationController.authenticate, () => {});
 routes.use(AuthenticationMiddleware);
 
 routes.put("/user", UserController.update);
-
 routes.delete("/user", UserController.delete);
+routes.get("/user-profile", UserController.userProfile);
 
 routes.get("/health", (req, res) => {
   return res.send({ message: "Connected with success!" });
 });
-
-routes.get("/user-profile", UserController.userProfile);
 
 routes.post("/upload", upload.single("image"), FileController.upload);
 
 routes.post("/post", schemaValidator(postCreateSchema), PostController.create);
 routes.delete("/post/:id", PostController.delete);
 routes.put("/post/:id", PostController.update);
+
+routes.put("/like/:id", PostController.addLike);
 
 module.exports = routes;
