@@ -29,6 +29,7 @@ routes.post("/upload", upload.single("image"), FileController.upload);
 routes.post("/post", schemaValidator(postCreateSchema), PostController.create);
 routes.delete("/post/:id", PostController.delete);
 routes.put("/post/:id", PostController.update);
+routes.get("/post", PostController.listMyPosts);
 
 routes.put("/like/:id", PostController.addLike);
 

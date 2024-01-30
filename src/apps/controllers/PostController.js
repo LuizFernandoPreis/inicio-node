@@ -88,12 +88,30 @@ class PostController {
     if (!postUpdate) {
       return res.status(400).json({ message: "Failed to add Like!" });
     }
-    return res
-      .status(200)
-      .json({
-        message: "Like added!",
-        number_likes: verifyPost.number_likes + 1,
+    return res.status(200).json({
+      message: "Like added!",
+      number_likes: verifyPost.number_likes + 1,
+    });
+  }
+  async listMyPosts(req, res) {
+    const allPosts = await Posts.findAll({
+      where: {
+        author_id: req.userId,
+      },
+    });
+    if (!allPosts.length) {
+      res.status(400).json({ message: "Failed to get posts!" });
+    }
+    const formData = [];
+    allPosts.forEach((element) => {
+      formData.push({
+        id: element.id,
+        image: element.image,
+        description: element.description,
+        number_likes: element.number_likes,
       });
+    });
+    return res.status(200).json({ data: formData });
   }
 }
 
