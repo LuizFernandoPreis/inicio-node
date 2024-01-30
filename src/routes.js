@@ -29,7 +29,7 @@ routes.get("/user-profile", UserController.userProfile);
 routes.post("/upload", upload.single("image"), FileController.upload);
 
 routes.post("/post", schemaValidator(postCreateSchema), PostController.create);
-
 routes.delete("/post/:id", PostController.delete);
+routes.put("/post/:id", PostController.update);
 
 module.exports = routes;
