@@ -6,13 +6,13 @@ const AuthenticationController = require("./apps/controllers/AuthenticationContr
 const schemaValidator = require("./apps/middlewares/schemaValidator");
 const userSchema = require("./schemas/create.user.schema.json");
 const AuthenticationMiddleware = require("./apps/middlewares/authentication");
+const PostController = require("./apps/controllers/PostController");
+const postCreateSchema = require("./schemas/post.schema copy.json");
 const routes = new Router();
 
 routes.post("/user", schemaValidator(userSchema), UserController.create);
 
-routes.post("/auth", AuthenticationController.authenticate, () => {
-  console.log(1);
-});
+routes.post("/auth", AuthenticationController.authenticate, () => {});
 
 routes.use(AuthenticationMiddleware);
 
@@ -27,5 +27,9 @@ routes.get("/health", (req, res) => {
 routes.get("/user-profile", UserController.userProfile);
 
 routes.post("/upload", upload.single("image"), FileController.upload);
+
+routes.post("/post", schemaValidator(postCreateSchema), PostController.create);
+
+routes.delete("/post/:id", PostController.delete);
 
 module.exports = routes;
