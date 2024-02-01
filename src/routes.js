@@ -18,7 +18,7 @@ routes.use(AuthenticationMiddleware);
 
 routes.put("/user", UserController.update);
 routes.delete("/user", UserController.delete);
-routes.get("/user-profile", UserController.userProfile);
+routes.get("/user", UserController.userProfile);
 
 routes.get("/health", (req, res) => {
   return res.send({ message: "Connected with success!" });
