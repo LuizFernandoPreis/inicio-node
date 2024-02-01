@@ -30,6 +30,7 @@ routes.post("/post", schemaValidator(postCreateSchema), PostController.create);
 routes.delete("/post/:id", PostController.delete);
 routes.put("/post/:id", PostController.update);
 routes.get("/post", PostController.listMyPosts);
+routes.get("/all-post", PostController.listAllPosts);
 
 routes.put("/like/:id", PostController.addLike);
 
