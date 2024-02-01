@@ -26,12 +26,12 @@ routes.get("/health", (req, res) => {
 
 routes.post("/upload", upload.single("image"), FileController.upload);
 
-routes.post("/post", schemaValidator(postCreateSchema), PostController.create);
-routes.delete("/post/:id", PostController.delete);
-routes.put("/post/:id", PostController.update);
-routes.get("/post", PostController.listMyPosts);
-routes.get("/all-post", PostController.listAllPosts);
+routes.post("/posts", schemaValidator(postCreateSchema), PostController.create);
+routes.delete("/posts/:id", PostController.delete);
+routes.put("/posts/:id", PostController.update);
+routes.get("/posts/my-posts", PostController.listMyPosts);
+routes.get("/posts", PostController.listAllPosts);
 
-routes.put("/like/:id", PostController.addLike);
+routes.put("/postss/like/:id", PostController.addLike);
 
 module.exports = routes;
